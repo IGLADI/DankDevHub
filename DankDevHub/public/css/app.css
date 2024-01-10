@@ -141,3 +141,15 @@ a {
     padding: 10px;
     justify-content: center;
 }
+
+.news-item {
+    margin-bottom: 20px;
+}
+
+.news-item-actions {
+    display: flex;
+}
+
+.news-item-actions a {
+    margin-right: 10px;
+}
