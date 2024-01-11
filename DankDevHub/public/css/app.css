@@ -160,3 +160,11 @@ a {
 form {
     margin-bottom: 10px;
 }
+
+.success {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}

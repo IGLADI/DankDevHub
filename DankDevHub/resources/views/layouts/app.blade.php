@@ -16,6 +16,7 @@
             <li><a href="{{ route('news') }}">Latest News</a></li>
             <li><a href="{{ route('faq.index') }}">FAQ</a></li>
             <li><a href="{{ route('welcome') }}">Profile</a></li>
+            <li><a href="{{ route('contact.show') }}">Contact</a></li>
             <li><a href="{{ route('logout') }}">Logout</a></li>
             <li><a href="{{ route('profile.delete-account') }}" class="btn-danger">Delete Account</a></li>
             @endguest
@@ -24,8 +25,23 @@
     </nav>
 
     <div class="container">
+        @if(session('success'))
+        <div class="success">
+            {{ session('success') }}
+        </div>
+        @endif
+        
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </div>
+        @endif
         @yield('content')
     </div>
+    
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

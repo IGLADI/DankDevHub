@@ -10,6 +10,8 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\FAQCategoryController;
 use App\Http\Controllers\FAQQuestionController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ForumController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +65,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/faq-questions/{faq_question}/promote', [FAQQuestionController::class, 'promoteToFaq'])->name('faq-questions.promote');
     Route::post('/faq-questions/{faq_question}/demote', [FAQQuestionController::class, 'demoteFromFaq'])->name('faq-questions.demote');
 });
+
 
 Route::get('/faq', [FAQCategoryController::class, 'index'])->name('faq.index');
 Route::resource('/faq-categories', FAQCategoryController::class);
