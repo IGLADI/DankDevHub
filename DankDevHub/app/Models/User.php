@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->is_admin === 1;
     }
+
+    public static function find($id)
+    {
+        return self::where('id', $id)->first();
+    }
 }

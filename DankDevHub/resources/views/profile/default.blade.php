@@ -25,6 +25,18 @@
                 <div class="profile-extra">
                     @yield('profile-content')
                 </div>
+                @if (!$user->is_admin && auth()->user()->is_admin && $user->id !== auth()->user()->id)
+                    <form action="{{ route('promoteToAdmin', $user->id) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Promote to Admin</button>
+                    </form>
+                @elseif ($user->is_admin && auth()->user()->is_admin && $user->id !== auth()->user()->id)
+                    <form action="{{ route('demoteFromAdmin', $user->id) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">Demote from Admin</button>
+                    </form>
+                @endif
+                
             </div>
 @else
             <p>User profile not found.</p>

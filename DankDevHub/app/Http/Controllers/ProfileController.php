@@ -73,6 +73,5 @@ class ProfileController extends Controller
         $user = Auth::user();
         return view('profile.delete-account', compact('user'));
     }
-    
-
+        
 }
