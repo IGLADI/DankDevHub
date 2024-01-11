@@ -13,6 +13,14 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
+    protected function attemptLogin(Request $request)
+    {
+        return Auth::attempt(
+            $this->credentials($request),
+            $request->filled('remember')
+        );
+    }
+
     public function login(Request $request)
     {
         $request->validate([

@@ -17,6 +17,11 @@
             <div class="form-group">
                 <input type="password" name="password_confirmation" placeholder="Confirm Password" class="form-control">
             </div>
+            
+            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                <label class="form-check-label" for="remember">
+                    Remember Me
+                </label>
 
             @if ($errors->any())
                 <div class="alert alert-danger">

@@ -18,7 +18,6 @@ return new class extends Migration
             $table->text('content')->nullable();
             $table->timestamp('publishing_date')->nullable();
             $table->timestamps();
-            $table->rememberToken();
         });
     }
 
