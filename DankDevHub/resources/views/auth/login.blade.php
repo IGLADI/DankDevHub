@@ -14,6 +14,13 @@
                 <input type="password" name="password" placeholder="Password" class="form-control">
             </div>
 
+
+            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+            <label class="form-check-label" for="remember">
+                {{ __('Remember Me') }}
+            </label>
+
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>

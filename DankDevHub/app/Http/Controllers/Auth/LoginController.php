@@ -32,7 +32,7 @@ class LoginController extends Controller
             'name' => $request->input('login'),
             'password' => $request->input('password'),
         ];
-
+        
         if (!Auth::attempt($credentials)) {
             return redirect()->back()->withInput()->withErrors(['login' => 'Invalid login credentials']);
         }

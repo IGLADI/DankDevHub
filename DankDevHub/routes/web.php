@@ -8,6 +8,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\FAQCategoryController;
+use App\Http\Controllers\FAQQuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,7 +56,17 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/news/{id}/update', [NewsController::class, 'update'])->name('news.update');
 
     Route::delete('/news/{id}/delete', [NewsController::class, 'destroy'])->name('news.destroy');
+    Route::post('/faq-categories/{faq_category}/edit', [FAQCategoryController::class, 'edit'])->name('faq-categories.edit');
+    Route::post('/faq-categories/{faq_category}/delete', [FAQCategoryController::class, 'delete'])->name('faq-categories.delete');
+    Route::delete('/faq-categories/{faq_category}/delete', [FAQCategoryController::class, 'destroy'])->name('faq-categories.destroy');
+    Route::post('/faq-questions/{faq_question}/answer', [FAQQuestionController::class, 'answer'])->name('faq-questions.answer');
+    Route::post('/faq-questions/{faq_question}/promote', [FAQQuestionController::class, 'promoteToFaq'])->name('faq-questions.promote');
+    Route::post('/faq-questions/{faq_question}/demote', [FAQQuestionController::class, 'demoteFromFaq'])->name('faq-questions.demote');
 });
+
+Route::get('/faq', [FAQCategoryController::class, 'index'])->name('faq.index');
+Route::resource('/faq-categories', FAQCategoryController::class);
+Route::resource('/faq-questions', FAQQuestionController::class);
 
 Route::get('/about', function () {
     return view('about');
