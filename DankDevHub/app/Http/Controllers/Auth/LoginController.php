@@ -63,4 +63,9 @@ class LoginController extends Controller
 
         return redirect('/');
     }
+
+    public function requestPassword()
+    {
+        return view('auth.passwords.request');
+    }
 }

@@ -34,5 +34,6 @@
             </div>
         </form>
     </div>
-    <div class="hint-text">Don't have an account? <a href="{{ route('register') }}">Register here</a></div>
+    <div class="hint-text">Don't have an account? <a href="{{ route('register') }}">Register here</a></div><br>
+    <div class="hint-text">Forgot your password? <a href="{{ route('password.request') }}">Reset password</a></div>
 @endsection

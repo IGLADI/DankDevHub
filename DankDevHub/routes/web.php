@@ -86,6 +86,8 @@ Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])-
 Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
+Route::get('/password/request', [LoginController::class, 'requestPassword'])->name('password.request');
+
 Route::get('/about', function () {
     return view('about');
 })->name('about');
