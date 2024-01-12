@@ -8,7 +8,7 @@
             @csrf
             @method('PUT')
             <input type="text" name="title" value="{{ $newsItem->title }}"><br>
-            <input type="text" name="content">{{ $newsItem->content }}</input><br>
+            <input type="text" name="content" value="{{ $newsItem->content }}"></input><br>
             <input type="file" name="cover_image"><br><br>
             <button type="submit">Update</button>
         </form>

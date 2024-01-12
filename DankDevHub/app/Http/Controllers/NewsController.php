@@ -36,7 +36,6 @@ class NewsController extends Controller
             $newsItem->cover_image = $imagePath;
         }
         $newsItem->content = $validatedData['content'];
-        $newsItem->publishing_date = now();
 
         $newsItem->save();
 

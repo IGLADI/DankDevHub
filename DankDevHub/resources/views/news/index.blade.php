@@ -10,7 +10,7 @@
                     <img src="{{ asset('storage/' . $newsItem->cover_image) }}" alt="{{ $newsItem->title }}" style="max-width: 300px;">
                 @endif
                 <p>{{ $newsItem->content }}</p>
-                <p>Publishing Date: {{ $newsItem->publishing_date }}</p>
+                <p>Publishing Date: {{ $newsItem->created_at }}</p>
                 @auth
                     @if(auth()->user()->isAdmin())
                         <div class="news-item-actions">

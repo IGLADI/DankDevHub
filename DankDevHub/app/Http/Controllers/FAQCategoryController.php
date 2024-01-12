@@ -23,6 +23,11 @@ class FAQCategoryController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
         ]);
+        $created_at = now();
+        $updated_at = now();
+
+        $validatedData['created_at'] = $created_at;
+        $validatedData['updated_at'] = $updated_at;
 
         FAQCategory::create($validatedData);
         return redirect()->route('faq-categories.index')->with('success', 'FAQ category created successfully!');
@@ -38,6 +43,9 @@ class FAQCategoryController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
         ]);
+
+        $updated_at = now();
+        $validatedData['updated_at'] = $updated_at;
 
         $faqCategory->update($validatedData);
         return redirect()->route('faq-categories.index')->with('success', 'FAQ category updated successfully!');
