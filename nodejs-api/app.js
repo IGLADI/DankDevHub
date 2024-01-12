@@ -32,14 +32,6 @@ class User extends Model {
     static get tableName() {
         return "users";
     }
-
-    static get modifiers() {
-        return {
-            restrictToReadOnly(builder) {
-                builder.select("id", "created_at", "updated_at", "name", "email", "avatar", "about_me");
-            },
-        };
-    }
 }
 
 class News extends Model {
