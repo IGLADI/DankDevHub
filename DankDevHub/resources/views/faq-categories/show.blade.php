@@ -9,7 +9,7 @@
 
         @if(auth()->user()->isAdmin())
             <!-- following requirements the admin can edit everyones questions??? -->
-            <form method="POST" action="{{ route('faq-questions.destroy', ['faq_question' => $question->id]) }}">
+            <form method="POST" action="{{ route('faq-questions.destroy', ['faq_question' => $question->id]) }}" onsubmit="return confirm('Are you sure you want to delete this question?');">
                 <a href="{{ route('faq-questions.edit', ['faq_question' => $question->id]) }}">Edit</a>
                 @csrf
                 @method('DELETE')

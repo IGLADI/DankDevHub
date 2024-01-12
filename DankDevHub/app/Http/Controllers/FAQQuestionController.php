@@ -50,7 +50,7 @@ class FAQQuestionController extends Controller
         ]);
 
         $faqQuestion->update($validatedData);
-        return redirect()->route('faq.index')->with('success', 'FAQ question updated successfully!');
+        return redirect()->back()->with('success', 'FAQ question updated successfully!');
     }
 
     public function destroy(FAQQuestion $faqQuestion)
@@ -68,7 +68,7 @@ class FAQQuestionController extends Controller
         $faq_question->answer = $request->input('answer');
         $faq_question->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'FAQ question answered successfully!');
     }
 
     public function promoteToFaq($id)
