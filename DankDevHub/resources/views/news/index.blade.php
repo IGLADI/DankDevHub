@@ -14,7 +14,7 @@
                 @auth
                     @if(auth()->user()->isAdmin())
                         <div class="news-item-actions">
-                            <a href="{{ route('news.edit', ['id' => $newsItem->id]) }}">Edit</a>
+                            <a href="{{ route('news.edit', ['id' => $newsItem->id]) }}">Edit</a><br><br>
                             <form method="post" action="{{ route('news.destroy', ['id' => $newsItem->id]) }}">
                                 @csrf
                                 @method('DELETE')

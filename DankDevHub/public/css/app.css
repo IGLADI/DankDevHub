@@ -144,14 +144,6 @@ a {
     margin-bottom: 20px;
 }
 
-.news-item-actions {
-    display: flex;
-}
-
-.news-item-actions a {
-    margin-right: 10px;
-}
-
 .container {
     width: 80%;
     margin: 0 auto;
