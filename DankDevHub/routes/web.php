@@ -42,6 +42,7 @@ Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/profile/delete-account', [ProfileController::class, 'deleteAccount'])->name('profile.delete-account');
@@ -87,6 +88,7 @@ Route::get('/contact', [ContactController::class, 'show'])->name('contact.show')
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
 Route::get('/password/request', [LoginController::class, 'requestPassword'])->name('password.request');
+
 
 Route::get('/about', function () {
     return view('about');

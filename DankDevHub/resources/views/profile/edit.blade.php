@@ -19,8 +19,18 @@
         <label for="about-me">About Me:</label>
         <textarea id="about-me" name="about-me" cols="50">{{ $user->about_me }}</textarea>
         <br>
-
+        <br>
         <button type="submit">Update Profile</button>
+    </form> 
+    <br>
+    <form method="POST" action="{{ route('profile.updatePassword') }}" enctype="multipart/form-data" class="edit">
+        @csrf
+
+        <h2>Change Password</h2>
+        <input type="password" name="current_password" placeholder="Current Password"><br>
+        <input type="password" name="new_password" placeholder="New Password"><br>
+        <input type="password" name="new_password_confirmation" placeholder="Confirm New Password"><br>
+        <button type="submit">Change Password</button>
     </form>
 
 @endsection

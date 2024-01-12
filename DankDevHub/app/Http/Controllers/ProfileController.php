@@ -24,7 +24,7 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $user = Auth::user();
-
+        
         $request->validate([
             'name' => [
                 'required',
@@ -41,13 +41,13 @@ class ProfileController extends Controller
             ],
             'avatar' => 'nullable|max:2048',
             'birthday' => 'nullable|date',
-            'password' => 'nullable|string|min:8|confirmed',
             'about-me' => 'nullable|string|max:255',
         ]);
         $user->name = $request->name;
         $user->email = $request->email;
         $user->birthday = $request->birthday;
         $user->about_me = $request->input('about-me');
+
         
         if ($request->avatar) {
             $avatar = $request->file('avatar');
@@ -58,6 +58,27 @@ class ProfileController extends Controller
         if ($user->save()) {
             return redirect()->route('profile.index')->with('success', 'Profile updated successfully!');
         }
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $user = Auth::user();
+        $request->validate([
+            'current_password' => [
+                'required',
+                function ($attribute, $value, $fail) use ($user) {
+                    if (!Hash::check($value, $user->password)) {
+                        $fail('The current password is incorrect.');
+                    }
+                },
+            ],
+            'new_password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user->password = bcrypt($request->input('new_password'));
+        $user->save();
+
+        return redirect()->route('profile.index')->with('success', 'Password updated successfully!');
     }
 
     public function destroy()
