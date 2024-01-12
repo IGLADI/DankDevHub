@@ -13,13 +13,6 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    protected function attemptLogin(Request $request)
-    {
-        return Auth::attempt(
-            $this->credentials($request),
-            $request->filled('remember')
-        );
-    }
 
     public function login(Request $request)
     {
@@ -35,13 +28,13 @@ class LoginController extends Controller
         ];
 
         // if not email, check with name and password
-        if (!Auth::attempt($credentials)) {
+        if (!Auth::attempt($credentials, $request->filled('remember'))) {
         $credentials = [
             'name' => $request->input('login'),
             'password' => $request->input('password'),
         ];
         
-        if (!Auth::attempt($credentials)) {
+        if (!Auth::attempt($credentials, $request->filled('remember'))) {
             return redirect()->back()->withInput()->withErrors(['login' => 'Invalid login credentials']);
         }
         else {
