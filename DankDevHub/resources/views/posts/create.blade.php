@@ -7,7 +7,7 @@
         <label for="title">Post Title:</label>
         <input type="text" id="title" name="title" required>
         <label for="content">Content:</label>
-        <textarea id="content" name="content"></textarea>
+        <input type="text" id="content" name="content"></input>
         <label for="image">Image (optional):</label>
         <input type="file" id="image" name="image">
         <button type="submit">Create Post</button>

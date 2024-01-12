@@ -17,7 +17,7 @@
         <input type="file" id="avatar" name="avatar" value="{{ $user->avatar }}">
         <br>
         <label for="about-me">About Me:</label>
-        <textarea id="about-me" name="about-me" cols="50">{{ $user->about_me }}</textarea>
+        <input type="text" id="about-me" name="about-me" cols="50">{{ $user->about_me }}</input>
         <br>
         <br>
         <button type="submit">Update Profile</button>

@@ -8,7 +8,7 @@
         <label for="title">Post Title:</label>
         <input type="text" id="title" name="title" value="{{ $post->title }}" required>
         <label for="content">Post Content:</label>
-        <textarea id="content" name="content">{{ $post->content }}</textarea>
+        <input type="text" id="content" name="content">{{ $post->content }}</input>
         <label for="image">Post Image (optional):</label>
         <input type="file" id="image" name="image">
         <button type="submit">Update Post</button>

@@ -7,8 +7,8 @@
         <form method="POST" action="{{ route('news.store') }}" enctype="multipart/form-data">
             @csrf
             <input type="text" name="title" placeholder="Title"><br>
-            <input type="file" name="cover_image"><br>
-            <textarea name="content" placeholder="Content"></textarea><br>
+            <input type="text" name="content" placeholder="Content"></input><br>
+            <input type="file" name="cover_image"><br><br>
             <button type="submit">Submit</button>
         </form>
     @else
