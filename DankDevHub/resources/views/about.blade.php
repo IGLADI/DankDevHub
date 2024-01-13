@@ -11,6 +11,7 @@
             <li>HTML</li>
             <li>CSS</li>
             <li>JavaScript</li>
+            <li>Node.js</li>
             <li>MySQL</li>
             <li>Bootstrap</li>
             <li>MailTrap</li>
@@ -23,6 +24,7 @@
             <li>Threads and post</li>
             <li>Interactive FAQ</li>
             <li>Contact form (this will send us an email, we will contact you back as soon as possible)</li>
+            <li>API integration</li>
             <li>And way more ;)</li>
         </ul>
         <a href="https://github.com/IGLADI/DankDevHub">GitHub Repository</a>

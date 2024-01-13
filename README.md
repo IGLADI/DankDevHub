@@ -11,6 +11,7 @@ Our platform is built using the following technologies:
 -   HTML
 -   CSS
 -   JavaScript
+-   Node.js
 -   MySQL
 -   Bootstrap
 -   MailTrap
