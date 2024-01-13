@@ -4,6 +4,9 @@ const bodyParser = require("body-parser");
 const knex = require("knex");
 const { Model } = require("objection");
 
+// ! update the .env file with a new password
+const SECRET_PASSWORD = process.env.SECRET_PASSWORD;
+
 // ! using the .env from the PHP project, both should be in the same folder
 const db = knex({
     client: process.env.DB_CONNECTION,
@@ -44,6 +47,16 @@ const app = express();
 
 app.use(bodyParser.json());
 
+const isAdmin = (req, res, next) => {
+    const { password } = req.headers;
+
+    if (password === SECRET_PASSWORD) {
+        next();
+    } else {
+        res.status(401).json({ error: "Unauthorized. Admin password is required." });
+    }
+};
+
 app.get("/api/categories", async (req, res) => {
     const categories = await Category.query().select("id", "created_at", "updated_at", "user_id", "name");
     res.json(categories);
@@ -53,6 +66,16 @@ app.get("/api/categories/search", async (req, res) => {
     try {
         const categories = await performSearch(Category, req.query);
         res.json(categories);
+    } catch (error) {
+        res.status(500).json({ error });
+        console.log(error);
+    }
+});
+
+app.post("/api/news", isAdmin, async (req, res) => {
+    try {
+        const newNews = await News.query().insert(req.body);
+        res.json(newNews);
     } catch (error) {
         res.status(500).json({ error });
         console.log(error);

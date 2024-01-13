@@ -141,10 +141,45 @@ The base URL for the API is `http://localhost:3000`.
     "updated_at": "2024-01-12T15:26:26.000Z",
     "name": "John Doe",
     "email": "john.doe@example.com",
-    "about_me": "A software
-
- developer.",
+    "about_me": "A software developer.",
   },
   // ... (other matching users)
 ]
+```
+
+### Admin-Only Features
+
+To perform certain actions, such as creating news articles, users must be authenticated as administrators. To authenticate as an admin, include the admin password in the headers of the request.
+
+#### Admin Password:
+- Default: "secret"
+
+#### Create News Article (Admin Only)
+**Endpoint:** `/api/news`  
+**Method:** `POST`  
+**Description:** Create a new news article. Only admins can perform this action.
+
+#### Request Example:
+```json
+POST /api/news
+Headers:
+{
+  "password": "secret"
+}
+Body:
+{
+  "title": "New Article",
+  "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+}
+```
+
+#### Response Example:
+```json
+{
+  "id": 2,
+  "created_at": "2024-01-13T12:00:00.000Z",
+  "updated_at": "2024-01-13T12:00:00.000Z",
+  "title": "New Article",
+  "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+}
 ```
