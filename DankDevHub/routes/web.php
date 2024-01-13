@@ -83,11 +83,10 @@ Route::get('/categories/{category}/posts/{post}/edit', [PostController::class, '
 Route::put('/categories/{category}/posts/{post}', [PostController::class, 'update'])->name('category.posts.update');
 Route::delete('/categories/{category}/posts/{post}', [PostController::class, 'destroy'])->name('category.posts.destroy');
 Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
-Route::post('/categories/{category}/posts/{post}/comments', [PostController::class, 'storeComment'])->name('category.posts.comments.store');
-Route::post('/categories/{category}/comments/{parentComment}/comments', [PostController::class, 'storeComment'])->name('category.posts.comments.comments.store');
+Route::post('/categories/{category}/posts/{post}/comments/{parentComment}', [PostController::class, 'storeComment'])->name('category.posts.comments.store');
 Route::delete('/categories/{category}/posts/{post}/comments/{comment}', [PostController::class, 'destroyComment'])->name('category.posts.comments.destroy');
 Route::get('/categories/{category}/posts/{post}/comments/{comment}/edit', [PostController::class, 'editComment'])->name('category.posts.comments.edit');
-Route::post('/categories/{category}/posts/{post}/comments/{comment}', [PostController::class, 'updateComment'])->name('comments.update');
+Route::post('/categories/{category}/posts/{post}/comments/{comment}/edit', [PostController::class, 'updateComment'])->name('comments.update');
 
 Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');

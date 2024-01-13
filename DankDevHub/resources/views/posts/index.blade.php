@@ -32,7 +32,7 @@
                 @endforeach
 
                 @auth
-                    <form method="POST" action="{{ route('category.posts.comments.store', ['category' => $category->id, 'post' => $post->id]) }}">
+                    <form method="POST" action="{{ route('category.posts.comments.store', ['category' => $category->id, 'post' => $post->id, 'parentComment' => 0]) }}">
                         @csrf
                         <label for="content">Add Comment:</label>
                         <input type="text" id="content" name="content" required>

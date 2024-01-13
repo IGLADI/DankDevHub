@@ -10,11 +10,10 @@
         <button type="submit" class="alert">Delete</button>
     </form>
 @endif
-    <form method="POST" action="{{ route('category.posts.comments.comments.store', ['category' => $category->id, 'parentComment' => $comment->id]) }}">
+    <form method="POST" action="{{ route('category.posts.comments.store', ['category' => $category->id, 'post' => $post->id, 'parentComment' => $comment->id]) }}" enctype="multipart/form-data">
         @csrf
         <label for="content">Add Comment:</label>
         <input type="text" id="content" name="content" required>
-        <input type="hidden" id="parentComment" name="parentComment" value="{{ $comment->id }}">
         <button type="submit">Add Comment</button>
     </form>
 @endauth

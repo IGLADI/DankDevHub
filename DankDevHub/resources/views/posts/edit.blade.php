@@ -4,7 +4,7 @@
     <h1>Edit Post</h1>
     <form method="POST" action="{{ route('category.posts.update', ['category' => $category->id, 'post' => $post->id]) }}" enctype="multipart/form-data">
         @csrf
-        @method('PUT')
+
         <label for="title">Post Title:</label>
         <input type="text" id="title" name="title" value="{{ $post->title }}" required>
         <label for="content">Post Content:</label>

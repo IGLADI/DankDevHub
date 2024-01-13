@@ -99,23 +99,21 @@ class PostController extends Controller
         return view('posts.show', compact('category', 'post'));
     }
 
-    public function storeComment(Request $request,int $post = NULL, int $parentComment = NULL)
+    public function storeComment(Request $request,int $category, int $post = null, int $parentComment = null)
     {
         $validatedData = $request->validate([
             'content' => 'required|string',
-            'parent_id' => 'nullable|exists:comments,id',
         ]);
 
         $user = Auth::user();
 
         $comment = new Comment([
             'content' => $validatedData['content'],
-            
         ]);
 
         $comment->user()->associate($user);
 
-        if ($parentComment == $post) {
+        if ($parentComment == 0) {
             $post = Post::find($post);
             $post->comments()->save($comment);
         }

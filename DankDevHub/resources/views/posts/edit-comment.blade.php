@@ -4,7 +4,7 @@
 @section('content')
     <div class="container">
         <h1>Edit Comment</h1>
-        <form action="{{ route('comments.update', ['category' => $category, 'post' => $post, 'comment' => $comment->id]) }}" method="POST">
+        <form action="{{ route('comments.update', ['category' => $category, 'post' => $post, 'comment' => $comment->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             
             <div class="form-group">
