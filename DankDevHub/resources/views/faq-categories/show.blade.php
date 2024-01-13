@@ -23,12 +23,12 @@
             @if($question->is_faq == 0)
                 <form method="POST" action="{{ route('faq-questions.promote', ['faq_question' => $question->id]) }}">
                     @csrf
-                    <button type="submit">Promote to FAQ</button>
+                    <button type="submit">Pin Question</button>
                 </form>
             @else
                 <form action="{{ route('faq-questions.demote', ['faq_question' => $question->id]) }}" method="post">
                     @csrf
-                    <button type="submit">Remove from FAQ</button>
+                    <button type="submit">Unpin Question</button>
                 </form>
             @endif
         @endif

@@ -77,7 +77,7 @@ class FAQQuestionController extends Controller
         $faqQuestion->is_faq = true;
         $faqQuestion->save();
 
-        return redirect()->route('faq.index')->with('success', 'Question promoted to FAQ.');
+        return redirect()->route('faq.index')->with('success', 'Question pinned to FAQ.');
     }
 
     public function demoteFromFaq($id)
@@ -86,6 +86,6 @@ class FAQQuestionController extends Controller
         $faqQuestion->is_faq = false;
         $faqQuestion->save();
 
-        return redirect()->route('faq.index')->with('success', 'Question demoted from FAQ.');
+        return redirect()->route('faq.index')->with('success', 'Question unpinned from FAQ.');
     }
 }

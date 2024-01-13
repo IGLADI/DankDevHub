@@ -24,7 +24,7 @@
                     </form>
                     <form action="{{ route('faq-questions.demote', ['faq_question' => $question->id]) }}" method="post">
                         @csrf
-                        <button type="submit">Remove from FAQ</button>
+                        <button type="submit">Unpin Question</button>
                     </form>
                 @endif
             @endforeach
