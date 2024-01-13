@@ -99,6 +99,33 @@ app.post("/api/news", isAdmin, async (req, res) => {
     }
 });
 
+app.put("/api/news/:id", isAdmin, async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updatedData = {
+            ...req.body,
+            updated_at: new Date(),
+        };
+
+        const updatedNews = await News.query().findById(id).patch(updatedData);
+        res.json(updatedNews);
+    } catch (error) {
+        res.status(500).json({ error });
+        console.log(error);
+    }
+});
+
+app.delete("/api/news/:id", isAdmin, async (req, res) => {
+    try {
+        const { id } = req.params;
+        await News.query().deleteById(id);
+        res.json({ message: "News deleted successfully." });
+    } catch (error) {
+        res.status(500).json({ error });
+        console.log(error);
+    }
+});
+
 app.get("/api/news", async (req, res) => {
     try {
         const news = await performQuery(News, req.query);
