@@ -5,7 +5,7 @@
         @csrf
         <p>Contact US</p>
         <label>Message</label>
-        <textarea tabindex="0" aria-label="leave a message" role="textbox" name="content"></textarea>
+        <input type="text" tabindex="0" aria-label="leave a message" role="textbox" name="content"></input>
         <br>
         <br>
         <button>SUBMIT</button>
