@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
+use App\Models\Comment;
 
 
 class PostController extends Controller
@@ -17,6 +18,7 @@ class PostController extends Controller
         for ($i = 0; $i < count($users); $i++) {
             $users[$i] = \App\Models\User::find($users[$i]);
         }
+
         return view('posts.index', compact('category', 'posts', 'users'));
     }
 
@@ -89,5 +91,66 @@ class PostController extends Controller
         } else {
             abort(403, 'Unauthorized action.');
         }
+    }
+
+    public function show(Category $category, Post $post)
+    {
+        $post->load('comments.user', 'comments.comments.user');
+        return view('posts.show', compact('category', 'post'));
+    }
+
+    public function storeComment(Request $request,int $post = NULL, int $parentComment = NULL)
+    {
+        $validatedData = $request->validate([
+            'content' => 'required|string',
+            'parent_id' => 'nullable|exists:comments,id',
+        ]);
+
+        $user = Auth::user();
+
+        $comment = new Comment([
+            'content' => $validatedData['content'],
+            
+        ]);
+
+        $comment->user()->associate($user);
+
+        if ($parentComment == $post) {
+            $post = Post::find($post);
+            $post->comments()->save($comment);
+        }
+        else {
+            $parentComment = Comment::find($parentComment);
+            $parentComment->comments()->save($comment);
+        } 
+
+        return redirect()->back()->with('success', 'Comment created successfully!');
+    }
+
+    public function destroyComment (int $category, int $post, int $comment)
+    {
+        $comment = Comment::find($comment);
+        $comment->delete();
+
+        return redirect()->back()->with('success', 'Comment deleted successfully!');
+    }
+
+    public function editComment (int $category, int $post, int $comment)
+    {
+        $comment = Comment::find($comment);
+        return view('posts.edit-comment', compact('category', 'post', 'comment'));
+    }
+
+    public function updateComment (Request $request, int $category, int $post, int $comment)
+    {
+        $validatedData = $request->validate([
+            'content' => 'required|string',
+        ]);
+
+        $comment = Comment::find($comment);
+        $comment->content = $validatedData['content'];
+        $comment->save();
+
+        return redirect()->route('category.posts', ['category' => $category, 'post' => $post])->with('success', 'Comment updated successfully!');
     }
 }

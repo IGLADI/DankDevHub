@@ -25,6 +25,22 @@
                     </form>
                 @endif
             @endauth
+
+            <h2>Comments:</h2>
+                @foreach ($post->comments as $comment)
+                    @include('partials.comment', ['comment' => $comment, 'parentCommentId' => null])
+                @endforeach
+
+                @auth
+                    <form method="POST" action="{{ route('category.posts.comments.store', ['category' => $category->id, 'post' => $post->id]) }}">
+                        @csrf
+                        <label for="content">Add Comment:</label>
+                        <input type="text" id="content" name="content" required>
+                        <button type="submit">Add Comment</button>
+                    </form>
+                @endauth
+
+                <br>
             </li>
         @endforeach
     </ul>
