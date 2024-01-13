@@ -23,17 +23,29 @@ class Category extends Model {
     static get tableName() {
         return "categories";
     }
+
+    static getColumns() {
+        return ["id", "created_at", "updated_at", "user_id", "name"];
+    }
 }
 
 class User extends Model {
     static get tableName() {
         return "users";
     }
+
+    static getColumns() {
+        return ["id", "created_at", "updated_at", "name", "email", "about_me"];
+    }
 }
 
 class News extends Model {
     static get tableName() {
         return "news";
+    }
+
+    static getColumns() {
+        return ["id", "created_at", "updated_at", "title", "content"];
     }
 }
 
@@ -52,8 +64,13 @@ const isAdmin = (req, res, next) => {
 };
 
 app.get("/api/categories", async (req, res) => {
-    const categories = await Category.query().select("id", "created_at", "updated_at", "user_id", "name");
-    res.json(categories);
+    try {
+        const categories = await performQuery(Category, req.query);
+        res.json(categories);
+    } catch (error) {
+        res.status(500).json({ error });
+        console.log(error);
+    }
 });
 
 app.get("/api/categories/search", async (req, res) => {
@@ -65,6 +82,7 @@ app.get("/api/categories/search", async (req, res) => {
         console.log(error);
     }
 });
+
 app.post("/api/news", isAdmin, async (req, res) => {
     try {
         const newsData = {
@@ -82,8 +100,13 @@ app.post("/api/news", isAdmin, async (req, res) => {
 });
 
 app.get("/api/news", async (req, res) => {
-    const news = await News.query().select("id", "created_at", "updated_at", "title", "content");
-    res.json(news);
+    try {
+        const news = await performQuery(News, req.query);
+        res.json(news);
+    } catch (error) {
+        res.status(500).json({ error });
+        console.log(error);
+    }
 });
 
 app.get("/api/news/search", async (req, res) => {
@@ -97,8 +120,13 @@ app.get("/api/news/search", async (req, res) => {
 });
 
 app.get("/api/users", async (req, res) => {
-    const users = await User.query().select("id", "created_at", "updated_at", "name", "email", "about_me");
-    res.json(users);
+    try {
+        const users = await performQuery(User, req.query);
+        res.json(users);
+    } catch (error) {
+        res.status(500).json({ error });
+        console.log(error);
+    }
 });
 
 app.get("/api/users/search", async (req, res) => {
@@ -129,8 +157,40 @@ async function performSearch(model, queryParams) {
     });
 
     query = query.select(selectedFields);
+    query = applySorting(query, queryParams.sort, model);
 
     return await query;
+}
+
+async function performQuery(model, queryParams) {
+    let query = model.query();
+
+    let selectedFields = ["id", "created_at", "updated_at"];
+
+    if (model === User) {
+        selectedFields.push("name", "email", "about_me");
+    } else if (model === Category) {
+        selectedFields.push("user_id", "name");
+    } else if (model === News) {
+        selectedFields.push("title", "content");
+    }
+
+    query = query.select(selectedFields);
+    query = applySorting(query, queryParams.sort, model);
+
+    return await query;
+}
+
+function applySorting(query, sortField, model) {
+    if (sortField) {
+        const validColumns = model.getColumns();
+        if (validColumns.includes(sortField)) {
+            query = query.orderBy(sortField);
+        } else {
+            console.error(`Invalid sort field: ${sortField}`);
+        }
+    }
+    return query;
 }
 
 const PORT = 3000;

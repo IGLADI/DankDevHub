@@ -224,9 +224,7 @@ Invoke-RestMethod -Uri "http://localhost:3000/api/users" -Method Get
         "email": "john.doe@example.com",
         "about_me": "A passionate developer."
     }
-    // ... (other matching users
-
-)
+    // ... (other matching users)
 ]
 ```
 
@@ -235,3 +233,39 @@ Invoke-RestMethod -Uri "http://localhost:3000/api/users" -Method Get
 ```powershell
 Invoke-RestMethod -Uri "http://localhost:3000/api/users/search?name=John Doe" -Method Get
 ```
+
+### Sorting Users
+
+**Endpoint:** `/api/users`  
+**Method:** `GET`  
+**Description:** Retrieve a list of all users with optional sorting based on specified parameters.
+
+#### Parameters:
+
+-   `sort` (optional): The field to use for sorting (e.g., "user_id", "email", "created_at").
+
+#### Response Examples:
+
+```json
+[
+    {
+        "id": 1,
+        "created_at": "2024-01-12T15:27:35.000Z",
+        "updated_at": "2024-01-12T15:27:35.000Z",
+        "name": "John Doe",
+        "email": "john.doe@example.com",
+        "about_me": "A passionate developer."
+    }
+    // ... (other users)
+]
+```
+
+#### Invoke-RestMethod Example (PowerShell):
+
+```powershell
+Invoke-RestMethod -Uri "http://localhost:3000/api/users?sort=user_id" -Method Get
+```
+
+### Note:
+
+-   **Sorting and searching on the same item:** To avoid potential issues, it is recommended to sort on a different field than the one used for searching. For example, if filtering on name, sort on "user_id" and then sort on "name."
