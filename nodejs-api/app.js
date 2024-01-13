@@ -25,12 +25,6 @@ class Category extends Model {
     }
 }
 
-class Post extends Model {
-    static get tableName() {
-        return "posts";
-    }
-}
-
 class User extends Model {
     static get tableName() {
         return "users";
@@ -71,10 +65,15 @@ app.get("/api/categories/search", async (req, res) => {
         console.log(error);
     }
 });
-
 app.post("/api/news", isAdmin, async (req, res) => {
     try {
-        const newNews = await News.query().insert(req.body);
+        const newsData = {
+            ...req.body,
+            created_at: new Date(),
+            updated_at: new Date(),
+        };
+
+        const newNews = await News.query().insert(newsData);
         res.json(newNews);
     } catch (error) {
         res.status(500).json({ error });
