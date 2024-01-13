@@ -72,6 +72,74 @@ Invoke-RestMethod -Uri "http://localhost:3000/api/categories" -Method Get
 Invoke-RestMethod -Uri "http://localhost:3000/api/categories/search?name=Technology" -Method Get
 ```
 
+### Create Category (Admin Only)
+
+**Endpoint:** `/api/categories`  
+**Method:** `POST`  
+**Description:** Create a new category. Only admins can perform this action.
+
+#### Request Example (PowerShell):
+
+```powershell
+Invoke-RestMethod -Uri "http://localhost:3000/api/categories" -Method Post -Headers @{"Content-Type"="application/json"; "password"="secret"} -Body '{"user_id": 1, "name": "New Category"}'
+```
+
+#### Response Example (PowerShell):
+
+```json
+{
+    "id": 2,
+    "created_at": "2024-01-13T12:00:00.000Z",
+    "updated_at": "2024-01-13T12:00:00.000Z",
+    "user_id": 1,
+    "name": "New Category"
+}
+```
+
+### Update Category (Admin Only)
+
+**Endpoint:** `/api/categories/:id`  
+**Method:** `PUT`  
+**Description:** Update an existing category. Only admins can perform this action.
+
+#### Request Example (PowerShell):
+
+```powershell
+Invoke-RestMethod -Uri "http://localhost:3000/api/categories/2" -Method Put -Headers @{"Content-Type"="application/json"; "password"="secret"} -Body '{"name": "Updated Category"}'
+```
+
+#### Response Example (PowerShell):
+
+```json
+{
+    "id": 2,
+    "created_at": "2024-01-13T12:00:00.000Z",
+    "updated_at": "2024-01-13T12:05:00.000Z",
+    "user_id": 1,
+    "name": "Updated Category"
+}
+```
+
+### Delete Category (Admin Only)
+
+**Endpoint:** `/api/categories/:id`  
+**Method:** `DELETE`  
+**Description:** Delete an existing category. Only admins can perform this action.
+
+#### Request Example (PowerShell):
+
+```powershell
+Invoke-RestMethod -Uri "http://localhost:3000/api/categories/2" -Method Delete -Headers @{"password"="secret"}
+```
+
+#### Response Example (PowerShell):
+
+```json
+{
+    "message": "Category deleted successfully."
+}
+```
+
 ## News
 
 ### Get all News
@@ -123,7 +191,9 @@ Invoke-RestMethod -Uri "http://localhost:3000/api/news" -Method Get
         "created_at": "2024-01-12T15:26:41.000Z",
         "updated_at": "2024-01-12T15:26:46.000Z",
         "title": "Breaking News",
-        "content": "Important information."
+        "content
+
+": "Important information."
     }
     // ... (other matching news articles)
 ]
@@ -137,7 +207,7 @@ Invoke-RestMethod -Uri "http://localhost:3000/api/news/search?title=Breaking New
 
 ### Admin-Only Features
 
-To perform certain actions, such as creating, updating, and deleting news articles, users must be authenticated as administrators. To authenticate as an admin, include the admin password in the headers of the request.
+To perform certain actions, such as creating news articles, users must be authenticated as administrators. To authenticate as an admin, include the admin password in the headers of the request.
 
 #### Admin Password:
 
@@ -167,50 +237,6 @@ Invoke-RestMethod -Uri "http://localhost:3000/api/news" -Method Post -Headers @{
 }
 ```
 
-#### Update News Article (Admin Only)
-
-**Endpoint:** `/api/news/:id`  
-**Method:** `PUT`  
-**Description:** Update an existing news article. Only admins can perform this action.
-
-#### Request Example (PowerShell):
-
-```powershell
-Invoke-RestMethod -Uri "http://localhost:3000/api/news/1" -Method Put -Headers @{"Content-Type"="application/json"; "password"="secret"} -Body '{"title": "Updated Rules", "content": "Follow the guidelines"}'
-```
-
-#### Response Example (PowerShell):
-
-```json
-{
-    "id": 1,
-    "created_at": "2024-01-13T12:00:00.000Z",
-    "updated_at": "2024-01-13T12:05:00.000Z",
-    "title": "Updated Rules",
-    "content": "Follow the guidelines"
-}
-```
-
-#### Delete News Article (Admin Only)
-
-**Endpoint:** `/api/news/:id`  
-**Method:** `DELETE`  
-**Description:** Delete an existing news article. Only admins can perform this action.
-
-#### Request Example (PowerShell):
-
-```powershell
-Invoke-RestMethod -Uri "http://localhost:3000/api/news/1" -Method Delete -Headers @{"password"="secret"}
-```
-
-#### Response Example (PowerShell):
-
-```json
-{
-    "message": "News deleted successfully."
-}
-```
-
 ## Users
 
 ### Get all Users
@@ -229,9 +255,7 @@ Invoke-RestMethod -Uri "http://localhost:3000/api/news/1" -Method Delete -Header
         "updated_at": "2024-01-12T15:27:35.000Z",
         "name": "John Doe",
         "email": "john.doe@example.com",
-        "about_me": "A
-
- passionate developer."
+        "about_me": "A passionate developer."
     }
     // ... (other users)
 ]

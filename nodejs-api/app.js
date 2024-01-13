@@ -83,6 +83,49 @@ app.get("/api/categories/search", async (req, res) => {
     }
 });
 
+app.post("/api/categories", isAdmin, async (req, res) => {
+    try {
+        const categoryData = {
+            ...req.body,
+            created_at: new Date(),
+            updated_at: new Date(),
+        };
+
+        const newCategory = await Category.query().insert(categoryData);
+        res.json(newCategory);
+    } catch (error) {
+        res.status(500).json({ error });
+        console.log(error);
+    }
+});
+
+app.put("/api/categories/:id", isAdmin, async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updatedData = {
+            ...req.body,
+            updated_at: new Date(),
+        };
+
+        const updatedCategory = await Category.query().findById(id).patch(updatedData);
+        res.json(updatedCategory);
+    } catch (error) {
+        res.status(500).json({ error });
+        console.log(error);
+    }
+});
+
+app.delete("/api/categories/:id", isAdmin, async (req, res) => {
+    try {
+        const { id } = req.params;
+        await Category.query().deleteById(id);
+        res.json({ message: "Category deleted successfully." });
+    } catch (error) {
+        res.status(500).json({ error });
+        console.log(error);
+    }
+});
+
 app.post("/api/news", isAdmin, async (req, res) => {
     try {
         const newsData = {
