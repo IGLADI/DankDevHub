@@ -3,7 +3,7 @@
 @section('content')
     <form method="POST" action="{{ route('contact.submit') }}">
         @csrf
-        <p>Contact US</p>
+        <h2>Contact US</h2>
         <label>Message</label>
         <input type="text" tabindex="0" aria-label="leave a message" role="textbox" name="content"></input>
         <br>
