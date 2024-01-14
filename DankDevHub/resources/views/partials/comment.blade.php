@@ -11,9 +11,9 @@
 @endif
     <form method="POST" action="{{ route('category.posts.comments.store', ['category' => $category->id, 'post' => $post->id, 'parentComment' => $comment->id]) }}" enctype="multipart/form-data">
         @csrf
-        <label for="content">Add Comment:</label>
+        <label for="content">Add Reply:</label>
         <input type="text" id="content" name="content" required>
-        <button type="submit">Add Comment</button>
+        <button type="submit">Add Reply</button>
     </form>
 @endauth
 

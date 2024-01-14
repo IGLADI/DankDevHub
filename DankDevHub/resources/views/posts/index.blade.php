@@ -33,7 +33,7 @@
                 @auth
                     <form method="POST" action="{{ route('category.posts.comments.store', ['category' => $category->id, 'post' => $post->id, 'parentComment' => 0]) }}">
                         @csrf
-                        <label for="content">Add Comment:</label>
+                        <label for="content">Add Post Comment:</label>
                         <input type="text" id="content" name="content" required>
                         <button type="submit">Add Comment</button>
                     </form>
