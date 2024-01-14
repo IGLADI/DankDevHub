@@ -170,3 +170,18 @@ form {
     height: 30px;
     border-radius: 50%;
 }
+
+[type="file"]::file-selector-button:is(:hover, :active, :focus) {
+    background-color: #666;
+}
+
+[type="file"]::-webkit-file-upload-button {
+    padding: 0.35rem 0.5rem;
+    border: 1px solid #666;
+    border-radius: 0.25rem;
+    background-color: #555;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
