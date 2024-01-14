@@ -17,7 +17,7 @@
                             @csrf
                             @method('DELETE')
                             <br>
-                            <button type="submit" class="alert">Delete</button>
+                            <button type="submit" class="alert">Delete Thread</button>
                         </form>
                     @endif
                 @endauth

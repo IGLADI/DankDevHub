@@ -2,12 +2,11 @@
 <br>
 @auth
 @if (Auth::id() === $post->user_id || Auth::user()->isAdmin())
-    <a href="{{ route('category.posts.comments.edit', ['category' => $category->id, 'post' => $post->id, 'comment' => $comment->id]) }}">Edit</a>
-    <form method="post" action="{{ route('category.posts.comments.destroy', ['category' => $category->id, 'post' => $post->id, 'comment' => $comment->id]) }}" onsubmit="return confirm('Are you sure you want to delete this comment?');">
+<form method="post" action="{{ route('category.posts.comments.destroy', ['category' => $category->id, 'post' => $post->id, 'comment' => $comment->id]) }}" onsubmit="return confirm('Are you sure you want to delete this comment?');">
+    <a href="{{ route('category.posts.comments.edit', ['category' => $category->id, 'post' => $post->id, 'comment' => $comment->id]) }}">Edit Comment</a>
         @csrf
         @method('DELETE')
-        <br>
-        <button type="submit" class="alert">Delete</button>
+        <button type="submit" class="alert">Delete Comment</button>
     </form>
 @endif
     <form method="POST" action="{{ route('category.posts.comments.store', ['category' => $category->id, 'post' => $post->id, 'parentComment' => $comment->id]) }}" enctype="multipart/form-data">

@@ -14,12 +14,12 @@
                 @auth
                     @if(auth()->user()->isAdmin())
                         <div class="news-item-actions">
-                            <a href="{{ route('news.edit', ['id' => $newsItem->id]) }}">Edit</a><br><br>
                             <!-- shocase a different confirm for deleting posts here, in a normal situation I would ask my client what he prefers this or the new page with confirmation -->
                             <form method="post" action="{{ route('news.destroy', ['id' => $newsItem->id]) }}" onsubmit="return confirm('Are you sure you want to delete this news item?');">
+                                <a href="{{ route('news.edit', ['id' => $newsItem->id]) }}">Edit News Item</a>
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn-danger">Delete</button>
+                                <button type="submit" class="btn-danger">Delete News Item</button>
                             </form>
                         </div>
                     @endif
