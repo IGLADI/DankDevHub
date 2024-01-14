@@ -40,7 +40,7 @@ class ProfileController extends Controller
                 Rule::unique('users')->ignore($user->id),
             ],
             'avatar' => 'nullable|max:2048',
-            'birthday' => 'nullable|date',
+            'birthday' => 'nullable|date|before:today',
             'about-me' => 'nullable|string|max:255',
         ]);
         $user->name = $request->name;
