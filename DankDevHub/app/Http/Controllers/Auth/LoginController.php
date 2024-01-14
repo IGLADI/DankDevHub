@@ -38,7 +38,7 @@ class LoginController extends Controller
             return redirect()->back()->withInput()->withErrors(['login' => 'Invalid login credentials']);
         }
         else {
-            return redirect()->intended('/profile');
+            return redirect()->intended('/profile')->with('success', 'Logged in successfully!');
         }
         }
         else {
@@ -54,7 +54,7 @@ class LoginController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/')->with('success', 'Logged out successfully!');
     }
 
     public function requestPassword()
