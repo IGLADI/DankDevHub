@@ -279,6 +279,17 @@ app.get("/api/posts/search", async (req, res) => {
     }
 });
 
+app.delete("/api/posts/:id", isAdmin, async (req, res) => {
+    try {
+        const { id } = req.params;
+        await Posts.query().deleteById(id);
+        res.json({ message: "Post deleted successfully." });
+    } catch (error) {
+        res.status(500).json({ error });
+        console.log(error);
+    }
+});
+
 app.get("/api/comments", async (req, res) => {
     try {
         const comments = await db("comments");
@@ -293,6 +304,17 @@ app.get("/api/comments/search", async (req, res) => {
     try {
         const comments = await db("comments").where(req.query);
         res.json(comments);
+    } catch (error) {
+        res.status(500).json({ error });
+        console.log(error);
+    }
+});
+
+app.delete("/api/comments/:id", isAdmin, async (req, res) => {
+    try {
+        const { id } = req.params;
+        await db("comments").where({ id }).delete();
+        res.json({ message: "Comment deleted successfully." });
     } catch (error) {
         res.status(500).json({ error });
         console.log(error);

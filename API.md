@@ -537,6 +537,28 @@ Invoke-RestMethod -Uri "http://localhost:3000/api/posts" -Method Get
 Invoke-RestMethod -Uri "http://localhost:3000/api/posts/search?title=Hey" -Method Get
 ```
 
+### Delete Post (Admin Only)
+
+**Endpoint:** `/api/posts/:id`
+
+**Method:** `DELETE`
+
+**Description:** Delete an existing post. Only admins can perform this action.
+
+#### Request Example (PowerShell):
+
+```powershell
+Invoke-RestMethod -Uri "http://localhost:3000/api/posts/3" -Method Delete -Headers @{"password"="secret"}
+```
+
+#### Response Example (PowerShell):
+
+```json
+{
+    "message": "Post deleted successfully."
+}
+```
+
 ...
 
 ## Comments
@@ -627,4 +649,22 @@ Invoke-RestMethod -Uri "http://localhost:3000/api/comments" -Method Get
 Invoke-RestMethod -Uri "http://localhost:3000/api/comments/search?content=hey" -Method Get
 ```
 
-...
+### Delete Comment (Admin Only)
+
+**Endpoint:** `/api/comments/:id`  
+**Method:** `DELETE`  
+**Description:** Delete an existing comment. Only admins can perform this action.
+
+#### Request Example (PowerShell):
+
+```powershell
+Invoke-RestMethod -Uri "http://localhost:3000/api/comments/3" -Method Delete -Headers @{"password"="secret"}
+```
+
+#### Response Example (PowerShell):
+
+```json
+{
+    "message": "Comment deleted successfully."
+}
+```
