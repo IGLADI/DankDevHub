@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Threads</h1>
-    <ul>
+    <ul class="no-indentation">
         @foreach ($categories as $category)
             <li class="thread">
                 <a href="{{ route('category.posts', ['category' => $category->id]) }}">{{ $category->name }}</a>

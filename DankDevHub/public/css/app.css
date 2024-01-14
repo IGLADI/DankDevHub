@@ -203,3 +203,7 @@ form {
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
 }
+
+.no-indentation {
+    padding-left: 0;
+}
