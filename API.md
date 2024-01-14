@@ -668,3 +668,5 @@ Invoke-RestMethod -Uri "http://localhost:3000/api/comments/3" -Method Delete -He
     "message": "Comment deleted successfully."
 }
 ```
+
+> **Note:** Users can combine different searches and sorts at will to customize their search results.
