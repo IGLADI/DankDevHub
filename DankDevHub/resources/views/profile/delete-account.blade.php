@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    @auth
     @if(auth()->user()->isAdmin())
         <h1>Unauthorized</h1>
         <p>For security reasons, you cannot delete an admin account.</p>
@@ -19,4 +20,7 @@
             </form>
         </div>
     @endif
+    @else
+        <h1>You must be logged in to view this page.</h1>
+    @endauth
 @endsection

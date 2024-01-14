@@ -13,7 +13,6 @@
             <img src="{{ asset('storage/' . $post->image) }}" alt="Post Image" style="max-width: 300px;">
             @endif
             <p>{{ $post->content }}</p>
-            @auth
                 @if (Auth::id() === $post->user_id || Auth::user()->isAdmin())
                 <!-- shocase a different confirm for deleting posts here, in a normal situation I would ask my client what he prefers this or the new page with confirmation -->
                 <form method="post" action="{{ route('category.posts.destroy', ['category' => $category->id, 'post' => $post->id]) }}" onsubmit="return confirm('Are you sure you want to delete this post?');">
@@ -23,21 +22,18 @@
                         <button type="submit" class="alert">Delete Post</button>
                     </form>
                 @endif
-            @endauth
 
             <h2>Comments:</h2>
                 @foreach ($post->comments as $comment)
                     @include('partials.comment', ['comment' => $comment, 'parentCommentId' => null])
                 @endforeach
 
-                @auth
                     <form method="POST" action="{{ route('category.posts.comments.store', ['category' => $category->id, 'post' => $post->id, 'parentComment' => 0]) }}">
                         @csrf
                         <label for="content">Add Post Comment:</label>
                         <input type="text" id="content" name="content" required>
                         <button type="submit">Add Comment</button>
                     </form>
-                @endauth
 
                 <br>
             </li>

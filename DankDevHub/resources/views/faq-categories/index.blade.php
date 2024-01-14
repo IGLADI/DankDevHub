@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@auth
     <h1>FAQ</h1>
     @foreach ($faqCategories as $category)
         <h2>{{ $category->name }}</h2>
@@ -10,7 +11,6 @@
                     <h3>Q: {{ $question->question }}</h3>
                     <p>A: {{ $question->answer }}</p>
                 </li>
-                @auth
                 @if(auth()->user()->isAdmin())
                     <form method="POST" action="{{ route('faq-questions.destroy', ['faq_question' => $question->id]) }}">
                         <a href="{{ route('faq-questions.edit', ['faq_question' => $question->id]) }}">Edit Question</a>
@@ -28,10 +28,8 @@
                         <button type="submit">Unpin Question</button>
                     </form>
                 @endif
-                @endauth
             @endforeach
             </ul>
-            @auth
             @if(auth()->user()->isAdmin())
                 <form method="POST" action="{{ route('faq-categories.delete', ['faq_category' => $category->id]) }}">
                     <a href="{{ route('faq-categories.edit', ['faq_category' => $category->id]) }}">Edit Category</a>
@@ -39,15 +37,15 @@
                     <button type="submit" class="btn-danger">Delete Category</button>
                 </form>
             @endif
-            @endauth
             <a href="{{ route('faq-categories.show', ['faq_category' => $category->id]) }}">View All Questions</a>
             @endforeach
-            @auth
             @if(auth()->user()->isAdmin())
                 <br>
                 <br>
                 <br>
                 <a href="{{ route('faq-categories.create') }}">Create FAQ Category</a>
             @endif
-            @endauth
+@else
+    <h1>You must be logged in to view this page.</h1>
+@endauth
 @endsection

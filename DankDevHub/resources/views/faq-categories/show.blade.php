@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@auth
     <h1>{{ $faqCategory->name }}</h1>
 
     @foreach ($faqQuestions as $question)
@@ -36,4 +37,7 @@
     @endforeach
 
     <a href="{{ route('faq-questions.create') }}">Add New Question</a>
+@else
+    <h1>You must be logged in to view this page.</h1>
+@endauth
 @endsection
