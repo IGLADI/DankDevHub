@@ -8,9 +8,9 @@
         <label for="title">Post Title:</label>
         <input type="text" id="title" name="title" value="{{ $post->title }}" required>
         <label for="content">Post Content:</label>
-        <input type="text" id="content" name="content">{{ $post->content }}</input>
+        <input type="text" id="content" name="content" value="{{ $post->content }}">
         <label for="image">Post Image (optional):</label>
-        <input type="file" id="image" name="image">
+        <input type="file" id="image" name="image"><br>
         <button type="submit">Update Post</button>
     </form>
 @endsection

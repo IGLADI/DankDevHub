@@ -80,7 +80,7 @@ Route::post('/categories', [CategoryController::class, 'store'])->name('category
 Route::get('/categories/{category}/posts/create', [PostController::class, 'create'])->name('category.posts.create');
 Route::post('/categories/{category}/posts', [PostController::class, 'store'])->name('category.posts.store');
 Route::get('/categories/{category}/posts/{post}/edit', [PostController::class, 'edit'])->name('category.posts.edit');
-Route::put('/categories/{category}/posts/{post}', [PostController::class, 'update'])->name('category.posts.update');
+Route::post('/categories/{category}/posts/{post}', [PostController::class, 'update'])->name('category.posts.update');
 Route::delete('/categories/{category}/posts/{post}', [PostController::class, 'destroy'])->name('category.posts.destroy');
 Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 Route::post('/categories/{category}/posts/{post}/comments/{parentComment}', [PostController::class, 'storeComment'])->name('category.posts.comments.store');
