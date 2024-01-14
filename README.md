@@ -78,6 +78,11 @@ Once everything is set up, you can access the project by navigating to the speci
 
 Refer to our [API Documentation](API.md) for comprehensive details about the DankDevHub API.
 
+## My github and repo
+
+-   [My github](https://github.com/IGLADI)
+-   [My repo](https://github.com/IGLADI/DankDevHub)
+
 ## About Us
 
 If you have questions or suggestions, reach out! DankDevHub thrives on community input.
