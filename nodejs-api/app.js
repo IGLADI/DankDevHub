@@ -49,6 +49,16 @@ class News extends Model {
     }
 }
 
+class Posts extends Model {
+    static get tableName() {
+        return "posts";
+    }
+
+    static getColumns() {
+        return ["id", "category_id", "title", "content", "created_at", "updated_at", "user_id"];
+    }
+}
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -249,6 +259,46 @@ app.get("/api/faq_questions/search", async (req, res) => {
     }
 });
 
+app.get("/api/posts", async (req, res) => {
+    try {
+        const posts = await performQuery(Posts, req.query);
+        res.json(posts);
+    } catch (error) {
+        res.status(500).json({ error });
+        console.log(error);
+    }
+});
+
+app.get("/api/posts/search", async (req, res) => {
+    try {
+        const posts = await performSearch(Posts, req.query);
+        res.json(posts);
+    } catch (error) {
+        res.status(500).json({ error });
+        console.log(error);
+    }
+});
+
+app.get("/api/comments", async (req, res) => {
+    try {
+        const comments = await db("comments");
+        res.json(comments);
+    } catch (error) {
+        res.status(500).json({ error });
+        console.log(error);
+    }
+});
+
+app.get("/api/comments/search", async (req, res) => {
+    try {
+        const comments = await db("comments").where(req.query);
+        res.json(comments);
+    } catch (error) {
+        res.status(500).json({ error });
+        console.log(error);
+    }
+});
+
 async function performSearch(model, queryParams) {
     let query = model.query();
 
@@ -260,6 +310,8 @@ async function performSearch(model, queryParams) {
         selectedFields.push("user_id", "name");
     } else if (model === News) {
         selectedFields.push("title", "content");
+    } else if (model === Posts) {
+        selectedFields.push("category_id", "title", "content", "user_id");
     }
 
     Object.entries(queryParams).forEach(([key, value]) => {
@@ -283,6 +335,8 @@ async function performQuery(model, queryParams) {
         selectedFields.push("user_id", "name");
     } else if (model === News) {
         selectedFields.push("title", "content");
+    } else if (model === Posts) {
+        selectedFields.push("category_id", "title", "content", "user_id");
     }
 
     query = query.select(selectedFields);

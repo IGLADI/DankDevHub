@@ -467,3 +467,164 @@ localhost:3000/api/faq_questions" -Method Get
 ```powershell
 Invoke-RestMethod -Uri "http://localhost:3000/api/faq_questions/search?question=delete" -Method Get
 ```
+
+## Posts
+
+### Get all Posts
+
+**Endpoint:** `/api/posts`  
+**Method:** `GET`  
+**Description:** Retrieve a list of all posts.
+
+#### Response Examples:
+
+```json
+[
+    {
+        "id": 1,
+        "created_at": "2024-01-14T13:59:19.000Z",
+        "updated_at": "2024-01-14T13:59:19.000Z",
+        "category_id": 1,
+        "title": "Hey",
+        "content": "Hey, how are y'all doing?",
+        "user_id": 1
+    }
+    // ... (other posts)
+]
+```
+
+#### Invoke-RestMethod Example (PowerShell):
+
+```powershell
+Invoke-RestMethod -Uri "http://localhost:3000/api/posts" -Method Get
+```
+
+### Search Posts
+
+**Endpoint:** `/api/posts/search`  
+**Method:** `GET`  
+**Description:** Search for posts based on specified parameters. Users can use any combination of parameters.
+
+#### Parameters:
+
+-   `id` (optional): The ID of the post.
+-   `category_id` (optional): The ID of the category associated with the post.
+-   `title` (optional): The title of the post.
+-   `content` (optional): The content of the post.
+-   `created_at` (optional): The creation timestamp of the post.
+-   `updated_at` (optional): The last update timestamp of the post.
+
+#### Response Examples:
+
+```json
+[
+    {
+        "id": 1,
+        "created_at": "2024-01-14T13:59:19.000Z",
+        "updated_at": "2024-01-14T13:59:19.000Z",
+        "category_id": 1,
+        "title": "Hey",
+        "content": "Hey, how are y'all doing?",
+        "user_id": 1
+    }
+    // ... (other matching posts)
+]
+```
+
+#### Invoke-RestMethod Example (PowerShell):
+
+```powershell
+Invoke-RestMethod -Uri "http://localhost:3000/api/posts/search?title=Hey" -Method Get
+```
+
+...
+
+## Comments
+
+### Get all Comments
+
+**Endpoint:** `/api/comments`  
+**Method:** `GET`  
+**Description:** Retrieve a list of all comments.
+
+#### Response Examples:
+
+```json
+[
+    {
+        "id": 1,
+        "post_id": 1,
+        "user_id": 2,
+        "content": "hey :)",
+        "parent_id": null,
+        "created_at": "2024-01-14T14:12:21.000Z",
+        "updated_at": "2024-01-14T14:12:21.000Z"
+    },
+    {
+        "id": 2,
+        "post_id": null,
+        "user_id": 1,
+        "content": "hey bud",
+        "parent_id": 1,
+        "created_at": "2024-01-14T14:12:25.000Z",
+        "updated_at": "2024-01-14T14:12:25.000Z"
+    }
+    // ... (other comments)
+]
+```
+
+#### Invoke-RestMethod Example (PowerShell):
+
+```powershell
+Invoke-RestMethod -Uri "http://localhost:3000/api/comments" -Method Get
+```
+
+### Search Comments
+
+**Endpoint:** `/api/comments/search`  
+**Method:** `GET`  
+**Description:** Search for comments based on specified parameters. Users can use any combination of parameters.
+
+#### Parameters:
+
+-   `id` (optional): The ID of the comment.
+-   `post_id` (optional): The ID of the post associated with the comment.
+-   `user_id` (optional): The ID of the user who made the comment.
+-   `content` (optional): The content of the comment.
+-   `parent_id` (optional): The ID of the parent comment if the comment is a reply.
+-   `created_at` (optional): The creation timestamp of the comment.
+-   `updated_at` (optional): The last update timestamp of the comment.
+
+#### Response Examples:
+
+```json
+[
+    {
+        "id": 1,
+        "post_id": 1,
+        "user_id": 2,
+        "content": "hey :)",
+        "parent_id": null,
+        "created_at": "2024-01-14T14:12:21.000Z",
+        "updated_at": "2024-01-14T14:12:21.000Z"
+    },
+    {
+        "id": 2,
+        "post_id": null,
+        "user_id": 1,
+        "content": "hey bud",
+        "parent_id": 1,
+        "created_at": "2024-01-14T14:12:25.000Z",
+        "updated_at": "2024-01-14T14:12:25.000Z"
+    }
+    // ... (other matching comments)
+]
+```
+
+#### Invoke-RestMethod Example (PowerShell):
+
+```powershell
+Invoke-RestMethod -Uri "http://localhost:3000/api/comments/search?content=hey" -Method Get
+```
+
+...
