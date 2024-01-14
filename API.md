@@ -8,7 +8,7 @@ DankDevHub API is designed to provide access to information related to categorie
 
 The base URL for the API is `http://localhost:3000`.
 
-## Categories
+## Categories a.k.a. "Threads"
 
 ### Get all Categories
 
@@ -334,4 +334,136 @@ Invoke-RestMethod -Uri "http://localhost:3000/api/users/search?name=John Doe" -M
 
 ```powershell
 Invoke-RestMethod -Uri "http://localhost:3000/api/users?sort=user_id" -Method Get
+```
+
+## FAQ Categories
+
+### Get all FAQ Categories
+
+**Endpoint:** `/api/faq_categories`  
+**Method:** `GET`  
+**Description:** Retrieve a list of all FAQ categories.
+
+#### Response Examples:
+
+```json
+[
+    {
+        "id": 1,
+        "name": "General",
+        "updated_at": "2024-01-14T00:19:25.000Z",
+        "created_at": "2024-01-14T00:19:25.000Z"
+    }
+    // ... (other FAQ categories)
+]
+```
+
+#### Invoke-RestMethod Example (PowerShell):
+
+```powershell
+Invoke-RestMethod -Uri "http://localhost:3000/api/faq_categories" -Method Get
+```
+
+### Search FAQ Categories
+
+**Endpoint:** `/api/faq_categories/search`  
+**Method:** `GET`  
+**Description:** Search for FAQ categories based on specified parameters. Users can use any combination of parameters.
+
+#### Parameters:
+
+-   `id` (optional): The ID of the FAQ category.
+-   `name` (optional): The name of the FAQ category.
+-   `created_at` (optional): The creation timestamp of the FAQ category.
+-   `updated_at` (optional): The last update timestamp of the FAQ category.
+
+#### Response Examples:
+
+```json
+[
+    {
+        "id": 1,
+        "name": "General",
+        "updated_at": "2024-01-14T00:19:25.000Z",
+        "created_at": "2024-01-14T00:19:25.000Z"
+    }
+    // ... (other matching FAQ categories)
+]
+```
+
+#### Invoke-RestMethod Example (PowerShell):
+
+```powershell
+Invoke-RestMethod -Uri "http://localhost:3000/api/faq_categories/search?name=General" -Method Get
+```
+
+## FAQ Questions
+
+### Get all FAQ Questions
+
+**Endpoint:** `/api/faq_questions`  
+**Method:** `GET`  
+**Description:** Retrieve a list of all FAQ questions.
+
+#### Response Examples:
+
+```json
+[
+    {
+        "id": 1,
+        "question": "How do I delete my account?",
+        "f_a_q_category_id": 2,
+        "created_at": "2024-01-14T00:19:25.000Z",
+        "updated_at": "2024-01-14T00:19:25.000Z",
+        "is_faq": 1,
+        "answer": "There is a big red button in the nav bar that says \"Delete Account\", click it and then confirm your choice."
+    }
+    // ... (other FAQ questions)
+]
+```
+
+#### Invoke-RestMethod Example (PowerShell):
+
+```powershell
+Invoke-RestMethod -Uri "http://
+
+localhost:3000/api/faq_questions" -Method Get
+```
+
+### Search FAQ Questions
+
+**Endpoint:** `/api/faq_questions/search`  
+**Method:** `GET`  
+**Description:** Search for FAQ questions based on specified parameters. Users can use any combination of parameters.
+
+#### Parameters:
+
+-   `id` (optional): The ID of the FAQ question.
+-   `question` (optional): The question text of the FAQ question.
+-   `f_a_q_category_id` (optional): The ID of the FAQ category associated with the question.
+-   `created_at` (optional): The creation timestamp of the FAQ question.
+-   `updated_at` (optional): The last update timestamp of the FAQ question.
+-   `is_faq` (optional): Indicates whether the question is an FAQ (1 for true, 0 for false).
+
+#### Response Examples:
+
+```json
+[
+    {
+        "id": 1,
+        "question": "How do I delete my account?",
+        "f_a_q_category_id": 2,
+        "created_at": "2024-01-14T00:19:25.000Z",
+        "updated_at": "2024-01-14T00:19:25.000Z",
+        "is_faq": 1,
+        "answer": "There is a big red button in the nav bar that says \"Delete Account\", click it and then confirm your choice."
+    }
+    // ... (other matching FAQ questions)
+]
+```
+
+#### Invoke-RestMethod Example (PowerShell):
+
+```powershell
+Invoke-RestMethod -Uri "http://localhost:3000/api/faq_questions/search?question=delete" -Method Get
 ```

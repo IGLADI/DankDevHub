@@ -209,6 +209,46 @@ app.get("/api/users/search", async (req, res) => {
     }
 });
 
+app.get("/api/faq_categories", async (req, res) => {
+    try {
+        const faqCategories = await db("f_a_q_categories");
+        res.json(faqCategories);
+    } catch (error) {
+        res.status(500).json({ error });
+        console.log(error);
+    }
+});
+
+app.get("/api/faq_categories/search", async (req, res) => {
+    try {
+        const faqCategories = await db("f_a_q_categories").where(req.query);
+        res.json(faqCategories);
+    } catch (error) {
+        res.status(500).json({ error });
+        console.log(error);
+    }
+});
+
+app.get("/api/faq_questions", async (req, res) => {
+    try {
+        const faqQuestions = await db("f_a_q_questions");
+        res.json(faqQuestions);
+    } catch (error) {
+        res.status(500).json({ error });
+        console.log(error);
+    }
+});
+
+app.get("/api/faq_questions/search", async (req, res) => {
+    try {
+        const faqQuestions = await db("f_a_q_questions").where(req.query);
+        res.json(faqQuestions);
+    } catch (error) {
+        res.status(500).json({ error });
+        console.log(error);
+    }
+});
+
 async function performSearch(model, queryParams) {
     let query = model.query();
 
