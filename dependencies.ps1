@@ -11,7 +11,7 @@ Set-Content composer.bat '@php "%~dp0composer.phar" %*'
 choco install mysql -y
 
 
-Set-Location -Path ./DanDevHub
+Set-Location -Path ./DankDevHub
 
 Set-Location -Path ./nodejs-api
 npm install
