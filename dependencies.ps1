@@ -19,5 +19,6 @@ npm install
 Set-Location -Path ../DankDevHub
 composer install
 php artisan migrate --seed
+php artisan storage:link
 
 Set-Location -Path ../

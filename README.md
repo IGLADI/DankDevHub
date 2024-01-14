@@ -37,14 +37,7 @@ This project originated as part of a "backend web" course at EHB. While the prim
 
 Ensure a smooth setup before running the project:
 
-1. **Edit Your .env:**
-
-    - Copy `.env.example` to `.env`.
-    - Generate a unique `APP_KEY` using `php artisan key:generate`.
-    - Set a secure password for the database (`DB_PASSWORD`).
-    - Update Mail settings (`MAIL_HOST`, `MAIL_USERNAME`, `MAIL_PASSWORD`) for your mailing service.
-
-2. **Install Dependencies:**
+1. **Install Dependencies:**
 
     - If you are using PowerShell, you can execute `dependencies.ps1` as an administrator to install all required dependencies, if you have not already scripts turned on please run `set-executionpolicy Bypass` in PowerShell as an administrator.
 
@@ -52,11 +45,22 @@ Ensure a smooth setup before running the project:
 
     Alternatively, if you are not using PowerShell, you can examine the `dependencies.ps1` file to see the list of required dependencies and install them manually.
 
+2. **Set Up**
+
+    - Copy `.env.example` to `.env` and update it accordingly.
+    - Generate a unique `APP_KEY` using `php artisan key:generate`.
+    - Set a secure password for the database (`DB_PASSWORD`).
+    - Update Mail settings (`MAIL_HOST`, `MAIL_USERNAME`, `MAIL_PASSWORD`) for your mailing service.
+
 3. **Run Migrations and Seed Database:**
 
-    - Execute `php artisan migrate:fresh --seed` to apply fresh database migrations and seed with sample data.
+    - Execute `php artisan migrate:fresh --seed` to apply fresh database migrations and seed with sample data. (this should already be done if running `dependencies.ps1`)
 
-4. **Start the Project:**
+4. **Create Symbolic Link for Storage:**
+
+    - Run `php artisan storage:link` to create a symbolic link from the `public/storage` directory to the `storage/app/public` directory. (this should already be done if running `dependencies.ps1`)
+
+5. **Start the Project:**
 
     - If you are using PowerShell, you can execute `start.ps1` to initiate the project.
 
