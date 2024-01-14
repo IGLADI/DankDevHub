@@ -15,7 +15,7 @@ class FAQQuestionSeeder extends Seeder
     {
         FAQQuestion::create([
             'question' => 'How do I delete my account?',
-            'answer' => 'There is a big red button in the nav bar that says "Delete Account", click it and then confirm your choice.',
+            'answer' => 'You can delete your account by going to your profile page and clicking the "Delete Account" button at the bottom of the page and confirming the deletion.',
             'f_a_q_category_id' => 2,
             'is_faq' => true,
         ]);

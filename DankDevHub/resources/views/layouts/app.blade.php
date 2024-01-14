@@ -19,7 +19,6 @@
             <li><a href="{{ route('welcome') }}">Profile</a></li>
             <!-- for dev, no confirm on logout, could be changed in prod -->
             <li><a href="{{ route('logout') }}">Logout</a></li>
-            <li><a href="{{ route('profile.delete-account') }}" class="btn-danger">Delete Account</a></li>
             <li><a href="{{ route('news') }}">Latest News</a></li>
             @endguest
             <li><a href="{{ route('about') }}">About</a></li>
