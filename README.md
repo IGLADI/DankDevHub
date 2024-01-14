@@ -68,8 +68,6 @@ Ensure a smooth setup before running the project:
 
     Alternatively, if you are not using PowerShell, you can examine the `start.ps1` file to see the commands required to start the project and execute them manually:
 
-    - Install dependencies using appropriate package managers.
-    - Run migrations (`php artisan migrate:fresh --seed`).
     - Start the project by running `php artisan serve` in `./DankDevHub` and `node app.js` in `./nodejs-api`.
 
 ## Running the Project
