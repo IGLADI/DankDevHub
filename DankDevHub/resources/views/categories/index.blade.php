@@ -23,7 +23,6 @@
                 @endauth
             </li>
             <br>
-            <br>
         @endforeach
     </ul>
 
