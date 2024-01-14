@@ -10,6 +10,7 @@ class NewsController extends Controller
     public function index()
     {
         $newsItems = News::all();
+        $newsItems = $newsItems->sortByDesc('created_at');
 
         return view('news.index', ['newsItems' => $newsItems]);
     }
