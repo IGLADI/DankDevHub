@@ -1,6 +1,7 @@
 @extends('profile.default')
 
 @section('profile-content')
+@auth
     <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data" class="edit">
         @csrf
         
@@ -32,5 +33,8 @@
         <input type="password" name="new_password_confirmation" placeholder="Confirm New Password"><br>
         <button type="submit">Change Password</button>
     </form>
+@else
+    <h1>You must be logged in to view this page.</h1>
+@endauth
 
 @endsection

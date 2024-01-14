@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    @auth
     <h1>Threads</h1>
     <ul class="no-indentation">
         @foreach ($categories as $category)
@@ -23,8 +24,8 @@
             <br>
         @endforeach
     </ul>
-
-    @auth
         <a href="{{ route('categories.create') }}">Create New Thread</a>
+    @else
+        <h1>You must be logged in to view this page.</h1>
     @endauth
 @endsection

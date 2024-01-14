@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+@auth
     <div class="user-profile">
         @if ($user)
             <div class="profile-info">
@@ -42,5 +42,7 @@
             <p>User profile not found.</p>
         @endif
     </div>
-
+@else 
+    <h1>You must be logged in to view this page.</h1>
+@endauth
 @endsection

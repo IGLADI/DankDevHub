@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@auth
     <h1>{{ $category->name }} Posts</h1>
     <?php $i=0; ?>
     <ul>
@@ -40,7 +41,8 @@
         @endforeach
     </ul>
 
-    @auth
-        <a href="{{ route('category.posts.create', ['category' => $category->id]) }}">Create New Post</a>
-    @endauth
+    <a href="{{ route('category.posts.create', ['category' => $category->id]) }}">Create New Post</a>
+@else
+    <h1>You must be logged in to view this page.</h1>
+@endauth
 @endsection

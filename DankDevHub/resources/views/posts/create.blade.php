@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    @auth
     <h1>Create Post in {{ $category->name }}</h1>
     <form method="POST" action="{{ route('category.posts.store', ['category' => $category->id]) }}" enctype="multipart/form-data">
         @csrf
@@ -12,4 +13,7 @@
         <input type="file" id="image" name="image"><br>
         <button type="submit">Create Post</button>
     </form>
+    @else
+        <h1>You must be logged in to view this page.</h1>
+    @endauth
 @endsection

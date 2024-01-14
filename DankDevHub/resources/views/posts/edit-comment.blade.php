@@ -2,6 +2,7 @@
 @extends('layouts.app')
 
 @section('content')
+@auth
     <div class="container">
         <h1>Edit Comment</h1>
         <form action="{{ route('comments.update', ['category' => $category, 'post' => $post, 'comment' => $comment->id]) }}" method="POST" enctype="multipart/form-data">
@@ -15,4 +16,7 @@
             <button type="submit" class="btn btn-primary">Update Comment</button>
         </form>
     </div>
+@else
+    <h1>You must be logged in to view this page.</h1>
+@endauth
 @endsection
