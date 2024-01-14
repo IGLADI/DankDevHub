@@ -48,9 +48,10 @@ class FAQQuestionController extends Controller
             'faq_category_id' => 'required',
             'question' => 'required|string',
         ]);
+        $validatedData['f_a_q_category_id'] = $validatedData['faq_category_id'];
 
         $faqQuestion->update($validatedData);
-        return redirect()->back()->with('success', 'FAQ question updated successfully!');
+        return redirect()->route('faq.index')->with('success', 'FAQ question updated successfully!');
     }
 
     public function destroy(FAQQuestion $faqQuestion)

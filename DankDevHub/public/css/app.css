@@ -52,6 +52,24 @@ h2 {
     border-radius: 4px;
 }
 
+.success,
+.alert-danger {
+    animation: fadeOut 10s forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
 .hint-text {
     color: #fff;
     padding-bottom: 15px;

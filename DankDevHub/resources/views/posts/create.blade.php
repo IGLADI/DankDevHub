@@ -9,7 +9,7 @@
         <label for="content">Content:</label>
         <input type="text" id="content" name="content"></input>
         <label for="image">Image (optional):</label>
-        <input type="file" id="image" name="image">
+        <input type="file" id="image" name="image"><br>
         <button type="submit">Create Post</button>
     </form>
 @endsection
