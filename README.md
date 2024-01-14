@@ -46,7 +46,7 @@ Ensure a smooth setup before running the project:
 
 2. **Install Dependencies:**
 
-    - If you are using PowerShell, you can execute `dependencies.ps1` as an administrator to install all required dependencies, if you have not already scripts turned on please run `set-executionpolicy remotesigned` in PowerShell as an administrator.
+    - If you are using PowerShell, you can execute `dependencies.ps1` as an administrator to install all required dependencies, if you have not already scripts turned on please run `set-executionpolicy Bypass` in PowerShell as an administrator.
 
     _OR_
 
